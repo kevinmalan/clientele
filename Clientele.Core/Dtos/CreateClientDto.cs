@@ -6,6 +6,7 @@ namespace Clientele.Core.Dtos
 {
     public class CreateClientDto
     {
+        public Guid UniqueId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
