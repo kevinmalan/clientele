@@ -1,0 +1,26 @@
+INSERT INTO [dbo].[Address]
+(
+	[UniqueId],
+	[AddressType],
+	[Line11],
+	[Line2],
+	[Line3],
+	[City],
+	[StateProvince],
+	[AreaCode],
+	[Country],
+	[ClientId]
+)
+VALUES
+(
+	@uniqueId,
+	@addressType,
+	@line11,
+	@line2,
+	@line3,
+	@city,
+	@stateProvince,
+	@areaCode,
+	@country,
+	@clientId
+)

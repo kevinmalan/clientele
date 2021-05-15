@@ -1,11 +1,12 @@
 ﻿using Clientele.Core.Models.Enums;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Clientele.Core.Models
+namespace Clientele.Core.Dtos
 {
-    public class Address
+    public class AddressDto
     {
-        public int Id { get; set; }
         public Guid UniqueId { get; set; }
         public AddressType AddressType { get; set; }
         public string Line1 { get; set; }
@@ -15,6 +16,5 @@ namespace Clientele.Core.Models
         public string StateProvince { get; set; }
         public string AreaCode { get; set; }
         public string Country { get; set; }
-        public int ClientId { get; set; }
     }
 }

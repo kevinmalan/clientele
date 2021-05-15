@@ -1,8 +1,11 @@
 ﻿CREATE TABLE [dbo].[Contact] (
-    [Id]       INT              IDENTITY (1, 1) NOT NULL,
+    [Id] INT IDENTITY (1, 1) NOT NULL,
     [UniqueId] UNIQUEIDENTIFIER NOT NULL,
-    [Cell]     NVARCHAR (50)    NULL,
-    [Work]     NVARCHAR (50)    NULL,
+    [ContactType] INT NOT NULL,
+    [Msisdn] NVARCHAR(100) NOT NULL,
+    [ClientId] INT FOREIGN KEY REFERENCES [dbo].[Client]([Id])
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
-
+GO
+CREATE NONCLUSTERED INDEX IX_UniqueId
+ON [dbo].[Contact]([UniqueId])

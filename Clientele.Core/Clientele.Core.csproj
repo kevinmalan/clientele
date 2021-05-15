@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Embedded Resources\Queries\CreateAddress.sql" />
     <None Remove="Embedded Resources\Queries\CreateClient.sql" />
+    <None Remove="Embedded Resources\Queries\CreateContact.sql" />
     <None Remove="Embedded Resources\Queries\GetClients.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Embedded Resources\Queries\CreateAddress.sql" />
     <EmbeddedResource Include="Embedded Resources\Queries\CreateClient.sql" />
+    <EmbeddedResource Include="Embedded Resources\Queries\CreateContact.sql" />
     <EmbeddedResource Include="Embedded Resources\Queries\GetClients.sql" />
   </ItemGroup>
 

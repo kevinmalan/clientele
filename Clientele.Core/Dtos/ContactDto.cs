@@ -1,11 +1,10 @@
 ﻿using Clientele.Core.Models.Enums;
 using System;
 
-namespace Clientele.Core.Models
+namespace Clientele.Core.Dtos
 {
-    public class Contact
+    public class ContactDto
     {
-        public int Id { get; set; }
         public Guid UniqueId { get; set; }
         public ContactType ContactType { get; set; }
         public string Msisdn { get; set; }

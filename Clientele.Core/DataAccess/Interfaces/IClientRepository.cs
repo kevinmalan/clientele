@@ -8,6 +8,10 @@ namespace Clientele.Core.DataAccess.Interfaces
     {
         Task<IEnumerable<Client>> GetClientsAsync();
 
-        Task CreateClientAsync(Client client);
+        Task<int> CreateClientAsync(Client client);
+
+        Task CreateAddressesAsync(IEnumerable<Address> addresses);
+
+        Task CreateContactsAsync(IEnumerable<Contact> contacts);
     }
 }

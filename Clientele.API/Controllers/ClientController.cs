@@ -24,6 +24,14 @@ namespace Clientele.API.Controllers
             return Ok(clients);
         }
 
+        [HttpGet("file/csv")]
+        public async Task<IActionResult> GetCsv()
+        {
+            var clients = await _clientService.GetClientsAsync();
+
+            return Ok(clients);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateClientDto createClientDto)
         {

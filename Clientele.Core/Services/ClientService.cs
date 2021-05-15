@@ -32,22 +32,17 @@ namespace Clientele.Core.Services
                     MiddleName = client.MiddleName,
                     LastName = client.LastName,
                     Gender = client.Gender,
-                    DateOfBirth = client.DateOfBirth,
-                    AddressUniqueId = client.Address.UniqueId,
-                    Residential = client.Address.Residential,
-                    WorkAddress = client.Address.Work,
-                    Postal = client.Address.Postal,
-                    ContactUniqueId = client.Contact.UniqueId,
-                    Cell = client.Contact.Cell,
-                    WorkContact = client.Contact.Work
+                    DateOfBirth = client.DateOfBirth
                 });
             }
 
-            return clientDtos;
+            return clientDtos; // TODO: Add Address & Contact dto collections
         }
 
         public async Task CreateClientAsync(CreateClientDto createClietnDto)
         {
+            var addresses = new List<Address>();
+            var contacts = new List<Contact>();
             var client = new Client
             {
                 UniqueId = Guid.NewGuid(),
@@ -55,23 +50,41 @@ namespace Clientele.Core.Services
                 MiddleName = createClietnDto.MiddleName,
                 LastName = createClietnDto.LastName,
                 Gender = createClietnDto.Gender,
-                DateOfBirth = createClietnDto.DateOfBirth,
-                Address = new Address
-                {
-                    UniqueId = Guid.NewGuid(),
-                    Postal = createClietnDto.Postal,
-                    Residential = createClietnDto.Residential,
-                    Work = createClietnDto.WorkAddress
-                },
-                Contact = new Contact
-                {
-                    UniqueId = Guid.NewGuid(),
-                    Cell = createClietnDto.Cell,
-                    Work = createClietnDto.WorkAddress
-                }
+                DateOfBirth = createClietnDto.DateOfBirth
             };
 
-            await _clientRepository.CreateClientAsync(client);
+            var clientId = await _clientRepository.CreateClientAsync(client);
+
+            foreach (var address in createClietnDto.AddressesDto)
+            {
+                addresses.Add(new Address
+                {
+                    UniqueId = Guid.NewGuid(),
+                    AddressType = address.AddressType,
+                    Line1 = address.Line1,
+                    Line2 = address.Line2,
+                    Line3 = address.Line3,
+                    AreaCode = address.AreaCode,
+                    City = address.City,
+                    StateProvince = address.StateProvince,
+                    Country = address.Country,
+                    ClientId = clientId
+                });
+            }
+
+            foreach (var contact in createClietnDto.ContactsDto)
+            {
+                contacts.Add(new Contact
+                {
+                    UniqueId = Guid.NewGuid(),
+                    ContactType = contact.ContactType,
+                    Msisdn = contact.Msisdn,
+                    ClientId = clientId
+                });
+            }
+
+            await _clientRepository.CreateAddressesAsync(addresses);
+            await _clientRepository.CreateContactsAsync(contacts);
         }
     }
 }

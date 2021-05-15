@@ -5,11 +5,7 @@ using Clientele.Core.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Clientele.Core.DataAccess
@@ -46,26 +42,11 @@ namespace Clientele.Core.DataAccess
                     FirstName = reader.GetString(2),
                     MiddleName = reader.GetString(3),
                     LastName = reader.GetString(4),
-                    Gender = reader.GetString(5),
+                    Gender = (Gender)reader.GetInt32(5),
                     DateOfBirth = reader.GetDateTime(6),
                     CreatedOn = reader.GetDateTimeOffset(7),
                     UpdatedOn = reader.IsDBNull(8) ? (DateTimeOffset?)null : reader.GetDateTimeOffset(8),
-                    Status = reader.GetString(9),
-                    Address = new Address
-                    {
-                        Id = reader.GetInt32(10),
-                        UniqueId = reader.GetGuid(11),
-                        Residential = reader.GetString(12),
-                        Work = reader.GetString(13),
-                        Postal = reader.GetString(14)
-                    },
-                    Contact = new Contact
-                    {
-                        Id = reader.GetInt32(15),
-                        UniqueId = reader.GetGuid(16),
-                        Cell = reader.GetString(17),
-                        Work = reader.GetString(18)
-                    }
+                    Status = (Status)reader.GetInt32(9)
                 });
             }
 
@@ -74,22 +55,15 @@ namespace Clientele.Core.DataAccess
             return clients;
         }
 
-        public async Task CreateClientAsync(Client client)
+        public async Task<int> CreateClientAsync(Client client)
         {
             client.CreatedOn = DateTimeOffset.UtcNow;
-            client.Status = Status.Active.ToString();
+            client.Status = Status.Active;
 
             string query = _sqlQueryProvider.GetQueryByName("CreateClient");
 
             SqlCommand command = new SqlCommand(query, sqlConnection);
 
-            command.Parameters.AddWithValue("@addressId", client.Address.UniqueId);
-            command.Parameters.AddWithValue("@residential", client.Address.Residential);
-            command.Parameters.AddWithValue("@workAddress", client.Address.Work);
-            command.Parameters.AddWithValue("@postal", client.Address.Postal);
-            command.Parameters.AddWithValue("@contactId", client.Contact.UniqueId);
-            command.Parameters.AddWithValue("@cell", client.Contact.Cell);
-            command.Parameters.AddWithValue("@workContact", client.Contact.Work);
             command.Parameters.AddWithValue("@uniqueId", client.UniqueId);
             command.Parameters.AddWithValue("@firstName", client.FirstName);
             command.Parameters.AddWithValue("@middleName", client.MiddleName ?? string.Empty);
@@ -100,7 +74,56 @@ namespace Clientele.Core.DataAccess
             command.Parameters.AddWithValue("@status", client.Status);
 
             sqlConnection.Open();
-            await command.ExecuteNonQueryAsync();
+            var clientId = (int)await command.ExecuteScalarAsync();
+            sqlConnection.Close();
+
+            return clientId;
+        }
+
+        public async Task CreateAddressesAsync(IEnumerable<Address> addresses)
+        {
+            string query = _sqlQueryProvider.GetQueryByName("CreateAddress");
+
+            sqlConnection.Open();
+
+            foreach (var address in addresses)
+            {
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+
+                command.Parameters.AddWithValue("@uniqueId", address.UniqueId);
+                command.Parameters.AddWithValue("@addressType", address.AddressType);
+                command.Parameters.AddWithValue("@line11", address.Line1);
+                command.Parameters.AddWithValue("@line2", address.Line2 ?? string.Empty);
+                command.Parameters.AddWithValue("@line3", address.Line3 ?? string.Empty);
+                command.Parameters.AddWithValue("@city", address.City);
+                command.Parameters.AddWithValue("@stateProvince", address.StateProvince);
+                command.Parameters.AddWithValue("@areaCode", address.AreaCode);
+                command.Parameters.AddWithValue("@country", address.Country);
+                command.Parameters.AddWithValue("@clientId", address.ClientId);
+
+                await command.ExecuteNonQueryAsync();
+            }
+
+            sqlConnection.Close();
+        }
+
+        public async Task CreateContactsAsync(IEnumerable<Contact> contacts)
+        {
+            string query = _sqlQueryProvider.GetQueryByName("CreateContact");
+
+            sqlConnection.Open();
+
+            foreach (var contact in contacts)
+            {
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+
+                command.Parameters.AddWithValue("@uniqueId", contact.UniqueId);
+                command.Parameters.AddWithValue("@contactType", contact.ContactType);
+                command.Parameters.AddWithValue("@msisdn", contact.Msisdn);
+                command.Parameters.AddWithValue("@clientId", contact.ClientId);
+
+                await command.ExecuteNonQueryAsync();
+            }
 
             sqlConnection.Close();
         }
