@@ -1,3 +1,7 @@
+using Clientele.Core.DataAccess;
+using Clientele.Core.DataAccess.Interfaces;
+using Clientele.Core.Services;
+using Clientele.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +29,9 @@ namespace Clientele.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IClientRepository, ClientRepository>();
+            services.AddTransient<ISqlQueryProvider, SqlQueryProvider>();
+            services.AddTransient<IClientService, ClientService>();
             services.AddControllers();
         }
 
