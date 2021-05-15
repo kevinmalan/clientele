@@ -30,30 +30,7 @@ namespace Clientele.Core.DataAccess
         {
             var clients = new List<Client>();
 
-            string query =
-                "SELECT"
-                + " c.[Id],"
-                + " c.[UniqueId],"
-                + " c.[FirstName],"
-                + " c.[MiddleName],"
-                + " c.[LastName],"
-                + " c.[Gender],"
-                + " c.[DateOfBirth],"
-                + " c.[CreatedOn],"
-                + " c.[UpdatedOn],"
-                + " c.[Status],"
-                + " a.[UniqueId] AS AddressUniqueId,"
-                + " a.[Residential],"
-                + " a.[Work] AS WorkAddress,"
-                + " a.[Postal],"
-                + " co.[UniqueId] AS ContactUniqueId,"
-                + " co.[Cell],"
-                + " co.[Work] AS WorkContact"
-                + " ROM[dbo].[Client] c"
-                + " OIN[dbo].[Address] a"
-                + " ON c.[AddressId] = a.[Id]"
-                + " OIN[dbo].[Contact] co"
-                + " ON c.[ContactId] = co.[Id];";
+            string query = _sqlQueryProvider.GetQueryByName("GetClients");
 
             SqlCommand command = new SqlCommand(query, sqlConnection);
 
@@ -72,7 +49,7 @@ namespace Clientele.Core.DataAccess
                     Gender = reader.GetString(5),
                     DateOfBirth = reader.GetDateTime(6),
                     CreatedOn = reader.GetDateTimeOffset(7),
-                    UpdatedOn = reader.GetDateTimeOffset(8),
+                    UpdatedOn = reader.IsDBNull(8) ? (DateTimeOffset?)null : reader.GetDateTimeOffset(8),
                     Status = reader.GetString(9),
                     Address = new Address
                     {

@@ -16,6 +16,14 @@ namespace Clientele.API.Controllers
             _clientService = clientService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var clients = await _clientService.GetClientsAsync();
+
+            return Ok(clients);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateClientDto createClientDto)
         {

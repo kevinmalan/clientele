@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <None Remove="Embedded Resources\Queries\CreateClient.sql" />
+    <None Remove="Embedded Resources\Queries\GetClients.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Embedded Resources\Queries\CreateClient.sql" />
+    <EmbeddedResource Include="Embedded Resources\Queries\GetClients.sql" />
   </ItemGroup>
 
   <ItemGroup>
