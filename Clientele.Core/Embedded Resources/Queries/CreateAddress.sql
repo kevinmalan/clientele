@@ -2,7 +2,7 @@ INSERT INTO [dbo].[Address]
 (
 	[UniqueId],
 	[AddressType],
-	[Line11],
+	[Line1],
 	[Line2],
 	[Line3],
 	[City],
@@ -15,7 +15,7 @@ VALUES
 (
 	@uniqueId,
 	@addressType,
-	@line11,
+	@line1,
 	@line2,
 	@line3,
 	@city,

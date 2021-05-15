@@ -1,0 +1,14 @@
+SELECT
+	[Id],
+	[UniqueId],
+	[AddressType],
+	[Line1],
+	[Line2],
+	[Line3],
+	[City],
+	[StateProvince],
+	[AreaCode],
+	[Country],
+	[ClientId]
+FROM
+	[dbo].[Address]

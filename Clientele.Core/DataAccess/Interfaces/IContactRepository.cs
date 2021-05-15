@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace Clientele.Core.DataAccess.Interfaces
 {
-    public interface IClientRepository
+    public interface IContactRepository
     {
-        Task<IEnumerable<Client>> GetClientsAsync();
+        Task<IEnumerable<Contact>> GetContactsAsync();
 
-        Task<int> CreateClientAsync(Client client);
+        Task CreateContactsAsync(IEnumerable<Contact> contacts);
     }
 }

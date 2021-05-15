@@ -30,6 +30,8 @@ namespace Clientele.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IClientRepository, ClientRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<ISqlQueryProvider, SqlQueryProvider>();
             services.AddTransient<IClientService, ClientService>();
             services.AddControllers();
