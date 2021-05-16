@@ -1,6 +1,9 @@
 ﻿using Clientele.Core.Dtos;
 using Clientele.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Clientele.API.Controllers
@@ -28,8 +31,14 @@ namespace Clientele.API.Controllers
         public async Task<IActionResult> GetCsv()
         {
             var clients = await _clientService.GetClientsAsync();
-
-            return Ok(clients);
+            var headers = _clientService.ToCsvheader(clients);
+            var body = _clientService.ToCsvBody(clients);
+            var content = headers + Environment.NewLine + body;
+            return File(
+                Encoding.UTF8.GetBytes(content),
+                "text/csv",
+                $"Clients Export {DateTimeOffset.UtcNow:dd-MMMM-yyyy}.csv"
+            );
         }
 
         [HttpPost]

@@ -6,7 +6,7 @@ namespace Clientele.Core.DataAccess.Interfaces
 {
     public interface IContactRepository
     {
-        Task<IEnumerable<Contact>> GetContactsAsync();
+        Task<IEnumerable<Contact>> GetContactsAsync(int clientId);
 
         Task CreateContactsAsync(IEnumerable<Contact> contacts);
     }

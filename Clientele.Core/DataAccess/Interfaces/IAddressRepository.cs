@@ -6,7 +6,7 @@ namespace Clientele.Core.DataAccess.Interfaces
 {
     public interface IAddressRepository
     {
-        Task<IEnumerable<Address>> GetAddressesAsync();
+        Task<IEnumerable<Address>> GetAddressesAsync(int clientId);
 
         Task CreateAddressesAsync(IEnumerable<Address> addresses);
     }

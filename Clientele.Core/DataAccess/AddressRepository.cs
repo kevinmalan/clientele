@@ -22,13 +22,15 @@ namespace Clientele.Core.DataAccess
             _sqlQueryProvider = sqlQueryProvider;
         }
 
-        public async Task<IEnumerable<Address>> GetAddressesAsync()
+        public async Task<IEnumerable<Address>> GetAddressesAsync(int clientId)
         {
             var addresses = new List<Address>();
 
             string query = _sqlQueryProvider.GetQueryByName("GetAddresses");
+            query += " WHERE [ClientId] = @clientId ";
 
             SqlCommand command = new SqlCommand(query, sqlConnection);
+            command.Parameters.AddWithValue("@clientId", clientId);
 
             sqlConnection.Open();
             using var reader = await command.ExecuteReaderAsync();
