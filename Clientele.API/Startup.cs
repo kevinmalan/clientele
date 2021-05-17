@@ -4,16 +4,9 @@ using Clientele.Core.Services;
 using Clientele.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Clientele.API
 {
@@ -34,6 +27,7 @@ namespace Clientele.API
             services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<ISqlQueryProvider, SqlQueryProvider>();
             services.AddTransient<IClientService, ClientService>();
+            services.AddCors();
             services.AddControllers();
         }
 
@@ -44,6 +38,10 @@ namespace Clientele.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(
+                    options => options.WithOrigins("http://localhost:4200/").AllowAnyHeader()
+                );
 
             app.UseHttpsRedirection();
 
