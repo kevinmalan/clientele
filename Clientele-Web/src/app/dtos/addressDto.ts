@@ -1,7 +1,7 @@
 export interface AddressDto
 {
     uniqueId: string,
-    addressType: string,
+    addressType: number,
     line1: string,
     line2: string,
     line3: string,

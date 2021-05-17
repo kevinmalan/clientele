@@ -8,9 +8,7 @@
     [DateOfBirth] DATETIME NOT NULL,
     [CreatedOn] DATETIMEOFFSET (7) NOT NULL,
     [UpdatedOn] DATETIMEOFFSET (7) NULL,
-    [Status] INT NOT NULL,
-    [AddressId] INT NULL,
-    [ContactId] INT NULL
+    [Status] INT NOT NULL
 );
 GO
 CREATE NONCLUSTERED INDEX IX_UniqueId
