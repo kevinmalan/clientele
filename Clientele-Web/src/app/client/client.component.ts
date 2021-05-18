@@ -42,7 +42,6 @@ export class ClientComponent implements OnInit {
   }
 
   create() {
-    console.log(this.contactDtos);
     this.http.post(
       "https://localhost:44358/api/client",
       {
@@ -56,7 +55,6 @@ export class ClientComponent implements OnInit {
     }
     ).subscribe(data => {
       console.log("created");
-      console.log(data);
     });
   }
 }
