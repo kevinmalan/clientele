@@ -1,2 +1,22 @@
-<p>client works!</p>
+<h1>Create Client</h1>
+<label>First Name:</label>
+<input type="text" [(ngModel)]="firstName">
+<br/>
+<label>Last Name:</label>
+<input type="text" [(ngModel)]="lastName">
+<br/>
+
+<select (change)="selectGender($event.target.value)">
+    <option *ngFor="let gender of genders"
+        [value]="gender.value">
+        {{gender.name}}</option>
+</select>
+
+
+<!-- dateOfBirth Datetimefield -->
+
+<!-- dynamic addressesDto[]-->
+
+<!-- dynamic contactsDto[]-->
+
 <button (click)="create()">Create Client</button>
