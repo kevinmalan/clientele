@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ClientDashboardDto } from '../dtos/clientDashboardDto';
+import { Genders } from '../constants/genders';
 
 @Component({
   selector: 'app-client-dashboard',
@@ -13,6 +14,8 @@ export class ClientDashboardComponent implements OnInit {
 
   clients: ClientDashboardDto[] = [];
 
+  genders = Genders;
+
   ngOnInit(): void {
     this.http.get(
       "https://localhost:44358/api/client",
@@ -22,7 +25,7 @@ export class ClientDashboardComponent implements OnInit {
           firstName: item.firstName,
           middleName: item.middleName,
           lastName: item.lastName,
-          gender: item.gender
+          gender: this.genders.filter(g => g.value == item.gender)[0].name
         });
       });
     });

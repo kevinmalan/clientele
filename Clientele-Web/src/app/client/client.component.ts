@@ -31,7 +31,7 @@ export class ClientComponent implements OnInit {
   genders = Genders;
 
   // fields
-  selectedGender: number = 1;
+  selectedGender: string = "";
   firstName: string = "";
   middleName: string = "";
   lastName: string = "";
@@ -39,7 +39,7 @@ export class ClientComponent implements OnInit {
   addedClientMessage: string = "Add Addresses"
 
   // events
-  selectGender(value: number) {
+  selectGender(value: string) {
     this.selectedGender = value;
   }
   
@@ -50,7 +50,7 @@ export class ClientComponent implements OnInit {
         firstName: this.firstName,
         middleName: this.middleName,
         lastName: this.lastName,
-        gender: this.selectedGender,
+        gender: parseInt(this.selectedGender),
         addressesDto: this.addressDtos,
         contactsDto: this.contactDtos
     }
