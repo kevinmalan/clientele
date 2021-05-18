@@ -5,7 +5,7 @@ Follows a 3 tier architecture consisting of
 - Angular Frontend
 
 ## Getting Started
-Ensure the .NET SDK, NodeJs (v. 10 or later) & NPM is installed.
+Ensure the .NET Core 3.1 SDK, NodeJs (v.10 or later) & npm (v.6 or later) is installed.
 - Add your SQL Server connection string value to the key "sqlConnectionString" inside appsettings.json
 - Publish Clientele.Data to your SQL Server
 - Start the API Project: Clientele.API
