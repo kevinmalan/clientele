@@ -7,7 +7,6 @@ export interface ClientDto
     middleName: string,
     lastName: string,
     gender: number,
-    dateOfBirth: Date,
     addressesDto: AddressDto[],
     contactsDto: ContactDto[]
 }

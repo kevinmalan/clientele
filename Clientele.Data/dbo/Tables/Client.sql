@@ -5,7 +5,6 @@
     [MiddleName] NVARCHAR (255) NULL,
     [LastName] NVARCHAR (255) NOT NULL,
     [Gender] INT NOT NULL,
-    [DateOfBirth] DATETIME NOT NULL,
     [CreatedOn] DATETIMEOFFSET (7) NOT NULL,
     [UpdatedOn] DATETIMEOFFSET (7) NULL,
     [Status] INT NOT NULL

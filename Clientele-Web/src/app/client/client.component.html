@@ -2,6 +2,9 @@
 <label>First Name:</label>
 <input class="form-control" type="text" [(ngModel)]="firstName">
 <br/>
+<label>Middle Name:</label>
+<input class="form-control" type="text" [(ngModel)]="middleName">
+<br/>
 <label>Last Name:</label>
 <input class="form-control" type="text" [(ngModel)]="lastName">
 <br/>
@@ -13,7 +16,6 @@
 </select>
 
 <br/>
-<!-- dateOfBirth Datetimefield -->
 
 <app-address 
     (addressDtoEvent)="bindAddressDtos($event)">
@@ -25,4 +27,4 @@
 
 <br/>
 <br/>
-<button class="btn btn-success" (click)="create()">Create Client</button>
+<button [ngClass]="addedClient ? 'btn btn-warning' : 'btn btn-info'" (click)="create()">{{addedClientMessage}}</button>

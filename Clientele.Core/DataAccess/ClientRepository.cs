@@ -43,10 +43,9 @@ namespace Clientele.Core.DataAccess
                     MiddleName = reader.GetString(3),
                     LastName = reader.GetString(4),
                     Gender = (Gender)reader.GetInt32(5),
-                    DateOfBirth = reader.GetDateTime(6),
-                    CreatedOn = reader.GetDateTimeOffset(7),
-                    UpdatedOn = reader.IsDBNull(8) ? (DateTimeOffset?)null : reader.GetDateTimeOffset(8),
-                    Status = (Status)reader.GetInt32(9)
+                    CreatedOn = reader.GetDateTimeOffset(6),
+                    UpdatedOn = reader.IsDBNull(7) ? (DateTimeOffset?)null : reader.GetDateTimeOffset(7),
+                    Status = (Status)reader.GetInt32(8)
                 });
             }
 
@@ -69,7 +68,6 @@ namespace Clientele.Core.DataAccess
             command.Parameters.AddWithValue("@middleName", client.MiddleName ?? string.Empty);
             command.Parameters.AddWithValue("@lastName", client.LastName);
             command.Parameters.AddWithValue("@gender", client.Gender);
-            command.Parameters.AddWithValue("@dateOfBirth", client.DateOfBirth);
             command.Parameters.AddWithValue("@createdOn", client.CreatedOn);
             command.Parameters.AddWithValue("@status", client.Status);
 

@@ -12,7 +12,6 @@ namespace Clientele.Core.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public Gender Gender { get; set; }
-        public DateTime DateOfBirth { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset? UpdatedOn { get; set; }
         public Status Status { get; set; }

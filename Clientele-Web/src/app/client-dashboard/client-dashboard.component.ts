@@ -22,8 +22,7 @@ export class ClientDashboardComponent implements OnInit {
           firstName: item.firstName,
           middleName: item.middleName,
           lastName: item.lastName,
-          gender: item.gender,
-          dateOfBirth: item.dateOfBirth 
+          gender: item.gender
         });
       });
     });

@@ -5,7 +5,6 @@
 	[MiddleName],
 	[LastName],
 	[Gender],
-	[DateOfBirth],
 	[CreatedOn],
 	[Status]
 )
@@ -17,7 +16,6 @@ VALUES
 	@middleName,
 	@lastName,
 	@gender,
-	@dateOfBirth,
 	@createdOn,
 	@status
 );

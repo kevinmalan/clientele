@@ -5,7 +5,6 @@ SELECT
 	c.[MiddleName],
 	c.[LastName],
 	c.[Gender],
-	c.[DateOfBirth],
 	c.[CreatedOn],
 	c.[UpdatedOn],
 	c.[Status]

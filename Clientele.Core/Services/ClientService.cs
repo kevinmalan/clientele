@@ -72,7 +72,6 @@ namespace Clientele.Core.Services
                     MiddleName = client.MiddleName,
                     LastName = client.LastName,
                     Gender = client.Gender,
-                    DateOfBirth = client.DateOfBirth,
                     AddressesDto = addressDtos,
                     ContactsDto = contactDtos
                 });
@@ -95,37 +94,42 @@ namespace Clientele.Core.Services
                 MiddleName = createClietnDto.MiddleName,
                 LastName = createClietnDto.LastName,
                 Gender = createClietnDto.Gender,
-                DateOfBirth = createClietnDto.DateOfBirth
             };
 
             var clientId = await _clientRepository.CreateClientAsync(client);
 
-            foreach (var address in createClietnDto.AddressesDto)
+            if (createClietnDto.AddressesDto != null)
             {
-                addresses.Add(new Address
+                foreach (var address in createClietnDto.AddressesDto)
                 {
-                    UniqueId = Guid.NewGuid(),
-                    AddressType = address.AddressType,
-                    Line1 = address.Line1,
-                    Line2 = address.Line2,
-                    Line3 = address.Line3,
-                    AreaCode = address.AreaCode,
-                    City = address.City,
-                    StateProvince = address.StateProvince,
-                    Country = address.Country,
-                    ClientId = clientId
-                });
+                    addresses.Add(new Address
+                    {
+                        UniqueId = Guid.NewGuid(),
+                        AddressType = address.AddressType,
+                        Line1 = address.Line1,
+                        Line2 = address.Line2,
+                        Line3 = address.Line3,
+                        AreaCode = address.AreaCode,
+                        City = address.City,
+                        StateProvince = address.StateProvince,
+                        Country = address.Country,
+                        ClientId = clientId
+                    });
+                }
             }
 
-            foreach (var contact in createClietnDto.ContactsDto)
+            if (createClietnDto.ContactsDto != null)
             {
-                contacts.Add(new Contact
+                foreach (var contact in createClietnDto.ContactsDto)
                 {
-                    UniqueId = Guid.NewGuid(),
-                    ContactType = contact.ContactType,
-                    Msisdn = contact.Msisdn,
-                    ClientId = clientId
-                });
+                    contacts.Add(new Contact
+                    {
+                        UniqueId = Guid.NewGuid(),
+                        ContactType = contact.ContactType,
+                        Msisdn = contact.Msisdn,
+                        ClientId = clientId
+                    });
+                }
             }
 
             await _addressRepository.CreateAddressesAsync(addresses);
@@ -138,7 +142,7 @@ namespace Clientele.Core.Services
 
             foreach (var client in clients)
             {
-                sb.Append($"{client.UniqueId},{client.FirstName},{client.MiddleName},{client.LastName},{client.Gender},{client.DateOfBirth},");
+                sb.Append($"{client.UniqueId},{client.FirstName},{client.MiddleName},{client.LastName},{client.Gender},");
                 foreach (var address in client.AddressesDto)
                 {
                     sb.Append($"{address.UniqueId},{address.AddressType},{SanitizeCsvValue(address.Line1)},{SanitizeCsvValue(address.Line2)},{SanitizeCsvValue(address.Line3)},{SanitizeCsvValue(address.City)},{SanitizeCsvValue(address.StateProvince)},{SanitizeCsvValue(address.AreaCode)},{SanitizeCsvValue(address.Country)},");
@@ -154,7 +158,7 @@ namespace Clientele.Core.Services
             var mostAddresses = clients.OrderByDescending(x => x.AddressesDto.Count()).Select(x => x.AddressesDto).FirstOrDefault();
 
             var sb = new StringBuilder();
-            sb.Append("UniqueId,FirstName,MiddleName,LastName,Gender,DateOfBirth,");
+            sb.Append("UniqueId,FirstName,MiddleName,LastName,Gender,");
             foreach (var address in mostAddresses)
             {
                 sb.Append("AddressUniqueId,AddressType,Line1,Line2,Line3,City,StateProvince,AreaCode,Country,");

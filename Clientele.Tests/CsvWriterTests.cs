@@ -29,7 +29,6 @@ namespace Clientele.Tests
                     FirstName = "Foo",
                     LastName = "Bar",
                     Gender = Gender.Female,
-                    DateOfBirth = DateTime.Now.AddYears(-30),
                     AddressesDto = new List<AddressDto>
                     {
                         new AddressDto
@@ -52,7 +51,6 @@ namespace Clientele.Tests
                     FirstName = "Foo",
                     LastName = "Bar",
                     Gender = Gender.Female,
-                    DateOfBirth = DateTime.Now.AddYears(-30),
                     AddressesDto = new List<AddressDto>
                     {
                         new AddressDto
@@ -87,7 +85,6 @@ namespace Clientele.Tests
                     FirstName = "Foo",
                     LastName = "Bar",
                     Gender = Gender.Female,
-                    DateOfBirth = DateTime.Now.AddYears(-30),
                     AddressesDto = new List<AddressDto>
                     {
                         new AddressDto
@@ -110,7 +107,7 @@ namespace Clientele.Tests
             var header = clientService.ToCsvheader(clientDtos);
 
             // Assert
-            header.ShouldBe("UniqueId,FirstName,MiddleName,LastName,Gender,DateOfBirth,AddressUniqueId,AddressType,Line1,Line2,Line3,City,StateProvince,AreaCode,Country,AddressUniqueId,AddressType,Line1,Line2,Line3,City,StateProvince,AreaCode,Country,");
+            header.ShouldBe("UniqueId,FirstName,MiddleName,LastName,Gender,AddressUniqueId,AddressType,Line1,Line2,Line3,City,StateProvince,AreaCode,Country,AddressUniqueId,AddressType,Line1,Line2,Line3,City,StateProvince,AreaCode,Country,");
         }
     }
 }

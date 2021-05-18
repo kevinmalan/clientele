@@ -35,12 +35,14 @@ export class ClientComponent implements OnInit {
   firstName: string = "";
   middleName: string = "";
   lastName: string = "";
+  addedClient: boolean = false;
+  addedClientMessage: string = "Add Addresses"
 
   // events
   selectGender(value: number) {
     this.selectedGender = value;
   }
-
+  
   create() {
     this.http.post(
       "https://localhost:44358/api/client",
@@ -49,12 +51,12 @@ export class ClientComponent implements OnInit {
         middleName: this.middleName,
         lastName: this.lastName,
         gender: this.selectedGender,
-        dateOfBirth: "1990-12-17",
         addressesDto: this.addressDtos,
         contactsDto: this.contactDtos
     }
     ).subscribe(data => {
-      console.log("created");
+      this.addedClient = true;
+      this.addedClientMessage = "Added";
     });
   }
 }
