@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AddressDto } from '../dtos/addressDto';
+import { ContactDto } from '../dtos/contactDto';
 import { Genders } from '../constants/genders';
 
 @Component({
@@ -16,9 +17,14 @@ export class ClientComponent implements OnInit {
   }
 
   addressDtos: AddressDto[];
+  contactDtos: ContactDto[];
 
   bindAddressDtos(addressDtos: AddressDto[]) {
     this.addressDtos = addressDtos;
+  }
+
+  bindContactDtos(contactDtos: ContactDto[]) {
+    this.contactDtos = contactDtos;
   }
 
   // constants
@@ -36,6 +42,7 @@ export class ClientComponent implements OnInit {
   }
 
   create() {
+    console.log(this.contactDtos);
     this.http.post(
       "https://localhost:44358/api/client",
       {
@@ -45,17 +52,7 @@ export class ClientComponent implements OnInit {
         gender: this.selectedGender,
         dateOfBirth: "1990-12-17",
         addressesDto: this.addressDtos,
-        contactsDto: [
-            {
-                contactType: 1,
-                msisdn: "27843904009"
-            },
-            {
-                ontactType: 3,
-                msisdn: "2543904009"
-            }
-        ]
-    
+        contactsDto: this.contactDtos
     }
     ).subscribe(data => {
       console.log("created");

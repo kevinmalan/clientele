@@ -15,7 +15,13 @@
 
 <!-- dateOfBirth Datetimefield -->
 
-<app-address (addressDtoEvent)="bindAddressDtos($event)"></app-address>
+<app-address 
+    (addressDtoEvent)="bindAddressDtos($event)">
+</app-address>
+
+<app-contact 
+    (contactDtoEvent)="bindContactDtos($event)">
+</app-contact>
 
 <br/>
 <button (click)="create()">Create Client</button>

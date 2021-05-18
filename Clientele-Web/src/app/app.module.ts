@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientComponent } from './client/client.component';
 import { AddressComponent } from './address/address.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientComponent,
-    AddressComponent
+    AddressComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
