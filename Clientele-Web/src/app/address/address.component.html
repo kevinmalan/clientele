@@ -1,93 +1,93 @@
 <!-- Residential -->
 <h2>Residential Address</h2>
 <label>Line 1</label>
-<input type="text" [(ngModel)]="residentialLine1">
+<input class="form-control" type="text" [(ngModel)]="residentialLine1">
 <br/>
 
 <label>Line 2</label>
-<input type="text" [(ngModel)]="residentialLine2">
+<input class="form-control" type="text" [(ngModel)]="residentialLine2">
 <br/>
 
 <label>Line 3</label>
-<input type="text" [(ngModel)]="residentialLine3">
+<input class="form-control" type="text" [(ngModel)]="residentialLine3">
 <br/>
 
 <label>City</label>
-<input type="text" [(ngModel)]="residentialCity">
+<input class="form-control" type="text" [(ngModel)]="residentialCity">
 <br/>
 
 <label>State Province</label>
-<input type="text" [(ngModel)]="residentialStateProvince">
+<input class="form-control" type="text" [(ngModel)]="residentialStateProvince">
 <br/>
 
 
 <label>Area Code</label>
-<input type="text" [(ngModel)]="residentialAreaCode">
+<input class="form-control" type="text" [(ngModel)]="residentialAreaCode">
 <br/>
 
 <label>Country</label>
-<input type="text" [(ngModel)]="residentialCountry">
+<input class="form-control" type="text" [(ngModel)]="residentialCountry">
 <br/>
 
 <!-- Work -->
 <h2>Work Address</h2>
 <label>Line 1</label>
-<input type="text" [(ngModel)]="workLine1">
+<input class="form-control" type="text" [(ngModel)]="workLine1">
 <br/>
 
 <label>Line 2</label>
-<input type="text" [(ngModel)]="workLine2">
+<input class="form-control" type="text" [(ngModel)]="workLine2">
 <br/>
 
 <label>Line 3</label>
-<input type="text" [(ngModel)]="workLine3">
+<input class="form-control" type="text" [(ngModel)]="workLine3">
 <br/>
 
 <label>City</label>
-<input type="text" [(ngModel)]="workCity">
+<input class="form-control" type="text" [(ngModel)]="workCity">
 <br/>
 
 <label>State Province</label>
-<input type="text" [(ngModel)]="workStateProvince">
+<input class="form-control" type="text" [(ngModel)]="workStateProvince">
 <br/>
 
 
 <label>Area Code</label>
-<input type="text" [(ngModel)]="workAreaCode">
+<input class="form-control" type="text" [(ngModel)]="workAreaCode">
 <br/>
 
 <label>Country</label>
-<input type="text" [(ngModel)]="workCountry">
+<input class="form-control" type="text" [(ngModel)]="workCountry">
 <br/>
 
 <!-- Home -->
 <h2>Residential Address</h2>
 <label>Line 1</label>
-<input type="text" [(ngModel)]="postalLine1">
+<input class="form-control" type="text" [(ngModel)]="postalLine1">
 <br/>
 
 <label>Line 2</label>
-<input type="text" [(ngModel)]="postalLine2">
+<input class="form-control" type="text" [(ngModel)]="postalLine2">
 <br/>
 
 <label>Line 3</label>
-<input type="text" [(ngModel)]="postalLine3">
+<input class="form-control" type="text" [(ngModel)]="postalLine3">
 <br/>
 
 <label>City</label>
-<input type="text" [(ngModel)]="postalCity">
+<input class="form-control" type="text" [(ngModel)]="postalCity">
 <br/>
 
 <label>State Province</label>
-<input type="text" [(ngModel)]="postalStateProvince">
+<input class="form-control" type="text" [(ngModel)]="postalStateProvince">
 <br/>
 
 
 <label>Area Code</label>
-<input type="text" [(ngModel)]="postalAreaCode">
+<input class="form-control" type="text" [(ngModel)]="postalAreaCode">
 <br/>
 
 <label>Country</label>
-<input type="text" [(ngModel)]="postalCountry">
+<input class="form-control" type="text" [(ngModel)]="postalCountry">
 <br/>
-<button (click)="addAddresses()">Add Addresses</button>
+<button [ngClass]="addedAddresses ? 'btn btn-warning' : 'btn btn-info'" (click)="addAddresses()">{{addAddressMessage}}</button>

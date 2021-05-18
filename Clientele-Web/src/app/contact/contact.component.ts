@@ -14,7 +14,13 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addedContacts: boolean = false;
+  addContactsMessage: string = "Add Contacts"
+
   addContacts() {
+    this.addedContacts = true;
+    this.addContactsMessage = "Added";
+
     this.contactDtos = [
       {
         contactType: this.cellContactType,

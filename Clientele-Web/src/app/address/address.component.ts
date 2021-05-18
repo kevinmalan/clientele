@@ -15,7 +15,13 @@ export class AddressComponent implements OnInit {
     
   }
 
+  addedAddresses: boolean = false;
+  addAddressMessage: string = "Add Addresses"
+
   addAddresses() {
+    this.addedAddresses = true;
+    this.addAddressMessage = "Added";
+    
     this.addressDtos = [
       {
         addressType : this.residentialAddressType,

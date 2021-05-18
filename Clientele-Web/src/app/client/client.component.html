@@ -1,18 +1,18 @@
 <h1>Create Client</h1>
 <label>First Name:</label>
-<input type="text" [(ngModel)]="firstName">
+<input class="form-control" type="text" [(ngModel)]="firstName">
 <br/>
 <label>Last Name:</label>
-<input type="text" [(ngModel)]="lastName">
+<input class="form-control" type="text" [(ngModel)]="lastName">
 <br/>
 
-<select (change)="selectGender($event.target.value)">
+<select class="form-control" (change)="selectGender($event.target.value)">
     <option *ngFor="let gender of genders"
         [value]="gender.value">
         {{gender.name}}</option>
 </select>
 
-
+<br/>
 <!-- dateOfBirth Datetimefield -->
 
 <app-address 
@@ -24,4 +24,5 @@
 </app-contact>
 
 <br/>
-<button (click)="create()">Create Client</button>
+<br/>
+<button class="btn btn-success" (click)="create()">Create Client</button>
