@@ -2,7 +2,7 @@
 {
     public enum ContactType
     {
-        Cell,
+        Cell = 1,
         Home,
         Work
     }

@@ -6,7 +6,7 @@ namespace Clientele.Core.Models.Enums
 {
     public enum AddressType
     {
-        Residential,
+        Residential = 1,
         Work,
         Postal
     }
