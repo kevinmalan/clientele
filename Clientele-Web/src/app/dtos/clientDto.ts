@@ -3,7 +3,6 @@ import { ContactDto } from './contactDto';
 
 export interface ClientDto
 {
-    uniqueId: string,
     firstName: string,
     middleName: string,
     lastName: string,

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ClientDto } from '../dtos/clientDto';
+import { AddressDto } from '../dtos/addressDto';
 import { Genders } from '../constants/genders';
 
 @Component({
@@ -13,6 +13,12 @@ export class ClientComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  addressDtos: AddressDto[];
+
+  bindAddressDtos(addressDtos: AddressDto[]) {
+    this.addressDtos = addressDtos;
   }
 
   // constants
@@ -38,35 +44,7 @@ export class ClientComponent implements OnInit {
         lastName: this.lastName,
         gender: this.selectedGender,
         dateOfBirth: "1990-12-17",
-        addressesDto: [
-            {
-                addressType: 1,
-                line1: "street xyz",
-                ine3: "Lynnwood",
-                city: "Pretoria",
-                stateProvince: "gauteng",
-                areaCode: "0081",
-                country: "South Africa"
-            },
-            {
-                addressType: 2,
-                line1: "street abc",
-                line3: "Brooklyn",
-                city: "Pretoria",
-                stateProvince: "gauteng",
-                areaCode: "0075",
-                country: "South Africa"
-            },
-            {
-                addressType: 2,
-                line1: "street def",
-                line3: "Brooklyn",
-                city: "Pretoria",
-                stateProvince: "gauteng",
-                areaCode: "0075",
-                country: "South Africa"
-            }
-        ],
+        addressesDto: this.addressDtos,
         contactsDto: [
             {
                 contactType: 1,
