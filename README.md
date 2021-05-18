@@ -5,7 +5,7 @@ Follows a 3 tier architecture consisting of
 - Angular Frontend
 
 ## Getting Started
-- Add your SQL Server connection string value to the key "sqlConnectionString" inside appsettings.json or appsettings.Development.json
+- Add your SQL Server connection string value to the key "sqlConnectionString" inside appsettings.json
 - Publish Clientele.Data to your SQL Server
 - Start the API Project: Clientele.API
 - Via the command line, navigate to ~Clientele\Clientele-Web and run ng serve --open
