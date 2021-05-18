@@ -36,7 +36,7 @@ export class ClientComponent implements OnInit {
   middleName: string = "";
   lastName: string = "";
   addedClient: boolean = false;
-  addedClientMessage: string = "Add Addresses"
+  addedClientMessage: string = "Add Client"
 
   // events
   selectGender(value: string) {
